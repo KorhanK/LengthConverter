@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Please Enter a Number"
+            android:text="I want to convert"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -31,27 +31,38 @@
             android:layout_width="120dp"
             android:layout_height="44dp"
             android:inputType="textPersonName"
-            android:text="Number"
+            android:text="0"
             android:textAlignment="center" />
+
+
+        <Spinner
+            android:id="@+id/firstSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+
+        </Spinner>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="meters is"
+            android:text="to"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
-            android:layout_width="50dp"
-            android:layout_height="20dp">
-            a
+            android:id="@+id/secondSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
 
         </Spinner>
 
 
         <Button
+
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:onClick="convert"
@@ -62,20 +73,14 @@
             android:id="@+id/targetText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="50dp"
             android:text="PLACEHOLDER"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="feet"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
 
 
     </LinearLayout>
