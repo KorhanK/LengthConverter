@@ -3,19 +3,94 @@ package com.example.tmp_sda_1138.lengthconverter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    public double enteredNumber;
+    public double convertedNumber;
+
+    Spinner firstSpinner;
+    Spinner secondSpinner;
+    ArrayAdapter<CharSequence> firstAdapter;
+    ArrayAdapter<CharSequence> secondAdapterDistances;
+    ArrayAdapter<CharSequence> secondAdapterWeights;
+    ArrayAdapter<CharSequence> secondAdapterVolume;
+
+    String[] distances = getResources().getStringArray(R.array.distances);
+    String[] weights = getResources().getStringArray(R.array.weights);
+    String[] volume = getResources().getStringArray(R.array.volume);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        firstSpinner = (Spinner) findViewById(R.id.firstSpinner);
+        secondSpinner = (Spinner) findViewById(R.id.secondSpinner);
+        firstAdapter = ArrayAdapter.createFromResource(this,R.array.distances+R.array.weights+R.array.volume,android.R.layout.simple_spinner_item);
+        firstAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        firstSpinner.setAdapter(firstAdapter);
+
+        secondAdapterDistances = ArrayAdapter.createFromResource(this,R.array.distances,android.R.layout.simple_spinner_item);
+        secondAdapterDistances.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        secondAdapterWeights = ArrayAdapter.createFromResource(this,R.array.weights,android.R.layout.simple_spinner_item);
+        secondAdapterWeights.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        secondAdapterVolume = ArrayAdapter.createFromResource(this,R.array.volume,android.R.layout.simple_spinner_item);
+        secondAdapterVolume.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        firstSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                String measureSelectedOnFirstSpinner = parent.getItemAtPosition(position).toString();
+                String test = null;
+
+
+                    for (int i = 0; i < distances.length; i++) {
+                        test = distances[i];
+                        if (test.equals(measureSelectedOnFirstSpinner)) {
+                            secondSpinner.setAdapter(secondAdapterDistances);
+
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < weights.length; i++) {
+                        test = weights[i];
+                        if (test.equals(measureSelectedOnFirstSpinner)) {
+                            secondSpinner.setAdapter(secondAdapterWeights);
+
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < volume.length; i++) {
+                        test = volume[i];
+                        if (test.equals(measureSelectedOnFirstSpinner)) {
+                            secondSpinner.setAdapter(secondAdapterVolume);
+
+                            break;
+                        }
+                    }
+
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                String measureSelectedOnFirstSpinner = null;
+            }
+        });
+
+
+
     }
 
-    public double enteredNumber;
-    public double convertedNumber;
+
 
     public void convert(View p){
         EditText entered = (EditText) findViewById(R.id.numberText);
